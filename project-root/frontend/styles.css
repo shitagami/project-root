@@ -1,0 +1,41 @@
+#container {
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+table, th, td {
+    border: 1px solid black;
+}
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+#weather-and-image {
+    display: flex;
+    align-items: center;
+}
+
+#current-weather {
+    flex: 1; /* 天気情報が広がるように設定 */
+}
+
+.weather-icon {
+    width: 100px; /* 画像の幅を調整 */
+    height: auto; /* 高さは自動調整 */
+    margin-left: 20px; /* 天気情報との間隔を設定 */
+}
+
+
+.uv-icon {
+    max-width: 50px; /* 幅を50pxに制限 */
+    height: auto; /* 縦横比を保ちながら高さを自動調整 */
+    margin-left: 10px; /* 画像とテキストの間に少し余白を追加 */
+}
+
+
+
