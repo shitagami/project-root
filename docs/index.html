@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ホームページ</title>
+  <!-- Bootstrap CSSの読み込み -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <!-- ナビゲーションバー -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">ホームページ</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#uv-index">UV指数</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#uv-map">UVマップ</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#skin-diagnosis">肌質診断</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- コンテンツ -->
+  <div class="container text-center mt-5">
+    <h1>ようこそ！</h1>
+    <p>以下のリンクから「UV指数」「UVマップ」「肌質診断」に移動できます。</p>
+
+    <!-- リンクボタン -->
+    <div class="row mt-4">
+      <div class="col-md-4">
+        <a href="uvindex.html" class="btn btn-primary btn-lg btn-block">UV指数</a>
+      </div>
+      <div class="col-md-4">
+        <a href="uvmap.html" class="btn btn-success btn-lg btn-block">UVマップ</a>
+      </div>
+      <div class="col-md-4">
+        <a href="skin.html" class="btn btn-info btn-lg btn-block">肌質診断</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- フッター -->
+  <footer class="text-center mt-5">
+    <p>© 2024 Your Website</p>
+  </footer>
+
+  <!-- Bootstrap JSと依存関係の読み込み -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
