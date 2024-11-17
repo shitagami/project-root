@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>肌質診断</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+      background: linear-gradient(to right, #ffffff, #d4d4d4); /* 左から右への薄いオレンジグラデーション */
+    }
+        /* 画像のサイズ調整 */
+        .image-options img {
+            width: 100%;
+            height: auto;
+        }
+        /* ラベルの間隔を調整 */
+        .image-options label {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">project-i</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="uvindex.html">UV指数</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="uvmap.html">UVマップ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="skin.html">肌質診断</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    <div class="container">
+        <h3 class="mt-4">肌質診断</h3>
+        
+        <!-- 質問1 -->
+        <div class="form-page" id="question-1">
+            <h4>朝起きた時の肌の状態は？</h4>
+            <div class="row image-options">
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_1" value="乾燥肌" required><img src="images/kansou.png" alt="乾燥肌" class="img-fluid"></label>
+                </div>
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_1" value="普通肌" required><img src="images/uruoi.png" alt="普通肌" class="img-fluid"></label>
+                </div>
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_1" value="混合肌" required><img src="images/bubun.png" alt="混合肌" class="img-fluid"></label>
+                </div>
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_1" value="脂性肌" required><img src="images/zentai.png" alt="脂性肌" class="img-fluid"></label>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary mt-3" onclick="nextPage()">次へ</button>
+        </div>
+
+        <!-- 質問2 -->
+        <div class="form-page" id="question-2" style="display: none;">
+            <h4>洗顔後の肌の状態は？</h4>
+            <div class="row image-options">
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_2" value="乾燥肌" required><img src="images/Figma basics (12).png" alt="乾燥肌" class="img-fluid"></label>
+                </div>
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_2" value="普通肌" required><img src="images/Figma basics (13).png" alt="普通肌" class="img-fluid"></label>
+                </div>
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_2" value="混合肌" required><img src="images/Figma basics (15).png" alt="混合肌" class="img-fluid"></label>
+                </div>
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_2" value="脂性肌" required><img src="images/Figma basics (14).png" alt="脂性肌" class="img-fluid"></label>
+                </div>
+            </div>
+            <button type="button" class="btn btn-secondary mt-3" onclick="prevPage()">前へ</button>
+            <button type="button" class="btn btn-primary mt-3" onclick="nextPage()">次へ</button>
+        </div>
+
+        <!-- 質問3 -->
+        <div class="form-page" id="question-3" style="display: none;">
+            <h4>肌のテカリは気になる？</h4>
+            <div class="row image-options">
+                <div class="col-6 col-md-4">
+                    <label><input type="radio" name="skin_question_3" value="脂性肌" required><img src="images/Figma basics (2).png" alt="脂性肌" class="img-fluid"></label>
+                </div>
+                <div class="col-6 col-md-4">
+                    <label><input type="radio" name="skin_question_3" value="普通肌,混合肌" required><img src="images/Figma basics (3).png" alt="混合肌" class="img-fluid"></label>
+                </div>
+                <div class="col-6 col-md-4">
+                    <label><input type="radio" name="skin_question_3" value="普通肌,乾燥肌" required><img src="images/Figma basics (4).png" alt="普通肌" class="img-fluid"></label>
+                </div>
+            </div>
+            <button type="button" class="btn btn-secondary mt-3" onclick="prevPage()">前へ</button>
+            <button type="button" class="btn btn-primary mt-3" onclick="nextPage()">次へ</button>
+        </div>
+
+        <!-- 質問4 -->
+        <div class="form-page" id="question-4" style="display: none;">
+            <h4>Tゾーンと頬で肌質は違う？</h4>
+            <div class="row image-options">
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_4" value="混合肌" required><img src="images/無題 (2).png" alt="混合肌,脂性肌" class="img-fluid"></label>
+                </div>
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_4" value="普通肌" required><img src="images/無題 (3).png" alt="普通肌,乾燥肌" class="img-fluid"></label>
+                </div>
+            </div>
+            <button type="button" class="btn btn-secondary mt-3" onclick="prevPage()">前へ</button>
+            <button type="button" class="btn btn-primary mt-3" onclick="nextPage()">次へ</button>
+        </div>
+
+        <!-- 質問5 -->
+        <div class="form-page" id="question-5" style="display: none;">
+            <h4>夏と冬どちらの方が毛穴が気になる？</h4>
+            <div class="row image-options">
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_5" value="脂性肌" required><img src="images/Figma basics (6).png" alt="脂性肌" class="img-fluid"></label>
+                </div>
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_5" value="乾燥肌" required><img src="images/Figma basics (5).png" alt="乾燥肌" class="img-fluid"></label>
+                </div>
+            </div>
+            <button type="button" class="btn btn-secondary mt-3" onclick="prevPage()">前へ</button>
+            <button type="button" class="btn btn-primary mt-3" onclick="nextPage()">次へ</button>
+        </div>
+
+        <!-- 質問6 -->
+        <div class="form-page" id="question-6" style="display: none;">
+            <h4>メイクの崩れ方は？</h4>
+            <div class="row image-options">
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_6" value="乾燥肌" required><img src="images/Figma basics (7).png" alt="乾燥肌" class="img-fluid"></label>
+                </div>
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_6" value="普通肌" required><img src="images/Figma basics (8).png" alt="混合肌" class="img-fluid"></label>
+                </div>
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_6" value="混合肌" required><img src="images/Figma basics (9).png" alt="脂性肌" class="img-fluid"></label>
+                </div>
+            </div>
+            <button type="button" class="btn btn-secondary mt-3" onclick="prevPage()">前へ</button>
+            <button type="button" class="btn btn-primary mt-3" onclick="nextPage()">次へ</button>
+        </div>
+
+        <!-- 診断結果ページ -->
+        <div id="result-page" style="display: none;">
+            <h4>診断結果</h4>
+            <p id="result"></p>
+            <button type="button" class="btn btn-secondary mt-3" onclick="prevPage()">前へ</button>
+            <button type="button" class="btn btn-primary mt-3" onclick="goHome()">ホームへ</button>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 1;
+        const totalPages = 6;
+
+        function showPage(page) {
+            for (let i = 1; i <= totalPages; i++) {
+                document.getElementById(`question-${i}`).style.display = 'none';
+            }
+            document.getElementById('result-page').style.display = 'none';
+
+            if (page > totalPages) {
+                displayResult();
+                document.getElementById('result-page').style.display = 'block';
+            } else {
+                document.getElementById(`question-${page}`).style.display = 'block';
+            }
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages + 1) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        }
+
+        function displayResult() {
+            let counts = {};
+            const selectedOptions = document.querySelectorAll('input[type="radio"]:checked');
+            selectedOptions.forEach(option => {
+                const skinType = option.value;
+                counts[skinType] = (counts[skinType] || 0) + 1;
+            });
+
+            let mostCommonSkinType = null;
+            let maxCount = 0;
+            for (let type in counts) {
+                if (counts[type] > maxCount) {
+                    maxCount = counts[type];
+                    mostCommonSkinType = type;
+                }
+            }
+            document.getElementById('result').textContent = `あなたの肌質は: ${mostCommonSkinType}`;
+        }
+
+        // ホームへボタンを追加
+        function goHome() {
+            window.location.href = "index.html"; // index.htmlに遷移
+        }
+    </script>
+</body>
+</html>
+
