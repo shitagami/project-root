@@ -1,0 +1,162 @@
+/* コンテナの設定 */
+#container {
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+}
+
+/* 見出し */
+h1 {
+    font-size: 50px;
+    margin-bottom: 20px; /* 下に余白を追加 */
+    color: #FCBB76;
+}
+
+h2 {
+    font-size: 30px;
+    margin-top: 30px; /* 上に余白を追加 */
+    color: #FCBB76;
+}
+
+h3{font-size: 40px;
+    margin-top: 30px; /* 上に余白を追加 */
+    color:#f78b61
+}
+h4{font-size: 40px;
+    margin-top: 30px; /* 上に余白を追加 */
+    color:#f78b61
+}
+/* テーブル */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 15px 20px; /* セル内の余白 */
+    text-align: center;
+}
+
+/* 天気情報とアイコン */
+#weather-and-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#current-weather {
+    flex: 1;
+    padding-right: 20px; /* アイコンとテキストの間隔 */
+}
+
+.weather-icon {
+    width: 100px;
+    height: auto;
+    margin-left: 20px;
+}
+
+/* UVアイコン */
+.uv-icon {
+    width: 200px;   /* 幅を200pxに設定 */
+    height: auto;   /* 縦横比を保ちながら高さを自動調整 */
+}
+
+
+
+/* フォーム全体 */
+#location-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* 入力フォーム */
+#location-input {
+    flex: 1; /* 入力欄が可能な限り幅を取る */
+    padding: 12px 20px; /* 内側の余白を同じにする */
+    border-radius: 4px 0 0 4px;
+    background: transparent;
+    border: 2px solid #f78b61;
+    border-right: none;
+    outline: none;
+    font-size: 16px;
+    height: 50px; /* 高さを揃える */
+    box-sizing: border-box; /* パディングとボーダーを高さに含める */
+}
+
+/* 検索ボタン */
+#location-button {
+    padding: 12px 20px; /* 内側の余白を同じにする */
+    background: #f78b61;
+    border: none;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 0 4px 4px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px; /* ボタンの高さを入力欄と合わせる */
+    box-sizing: border-box; /* パディングとボーダーを高さに含める */
+}
+
+/* ボタン内アイコン */
+#location-button i {
+    margin-right: 8px; /* アイコンとテキストの間に少し余白 */
+}
+
+/* ボタンホバー時 */
+#location-button:hover {
+    background: #92dbff;
+}
+
+/* 画像サイズ調整（UVアイコン） */
+#current-uv-index img.uv-icon {
+    max-width: 150px;
+    height: auto;
+}
+
+/* 地域のUV指数： */
+#specific-uv-index {
+    margin-top: 30px; /* 上に余白を追加 */
+    font-size: 30px;          /* 文字サイズを24pxに設定 */
+    font-family: 'Roboto', sans-serif;  /* フォントをRobotoに設定 */
+    color: #f78b61;
+}
+
+/* 現在のUV指数： */
+#current-uv-index
+{
+    font-size: 30px;          /* 文字サイズを24pxに設定 */
+    font-family: 'Roboto', sans-serif;  /* フォントをRobotoに設定 */
+    color: #FCBB76;
+}
+
+/* 天気 */
+#current-weather {
+    border: 2px solid #FCBB76; /* ボーダーの色と太さを指定 */
+    padding: 20px; /* 内側の余白を指定 */
+    border-radius: 10px; /* 角を丸くする（オプション） */
+    margin-top: 20px; /* 上部に少し余白を追加（オプション） */
+    background-color: #fffae4; /* 背景色を指定（オプション） */
+}
+/* 特定の天気 */
+#specific-weather{
+    border: 2px solid #FCBB76; /* ボーダーの色と太さを指定 */
+    padding: 20px; /* 内側の余白を指定 */
+    border-radius: 10px; /* 角を丸くする（オプション） */
+    margin-top: 20px; /* 上部に少し余白を追加（オプション） */
+    background-color: #fffae4; /* 背景色を指定（オプション） */
+}
+
+#specific-weather, h4 {
+    display: none; /* 初期状態で非表示にする */
+}
