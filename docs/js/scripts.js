@@ -34,7 +34,7 @@ async function fetchWeather(lat, lon) {
 function getUVCategory(uvIndex) {
     let advice = '';  // アドバイス用の変数を追加
     if (uvIndex <= 2) {
-        return { category: '弱い', imagePath: 'Figma_basics_19.png', advice: advice };
+        return { category: '弱い', imagePath: 'images/Figma_basics_21.png', advice: advice };
     } else if (uvIndex <= 5) {
         advice = '帽子や日傘を使用して、紫外線から肌を守りましょう。';  // アドバイス追加
         return { category: '中程度', imagePath: 'images/無題 (10).png', advice: advice };
