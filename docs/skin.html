@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>肌質診断</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .btn {
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-size: 1.1em;
+        }
+        .image-item {
+            transition: transform 0.2s;
+        }
+        .image-item:hover {
+            transform: scale(1.05);
+        }
+        .image-options img {
+            width: 100%;
+            height: auto;
+        }
+        .image-display img {
+            max-width: 100%;
+            height: auto;
+        }
+        .description {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        #result-page .image-display {
+        display: flex; /* 画像を横並びに */
+        justify-content: center; /* コンテンツを中央揃え */
+        flex-wrap: wrap; /* 横幅が足りない場合は折り返す */
+        gap: 20px; /* 画像間のスペース */
+    }
+
+    #result-page .image-item {
+        display: flex;
+        flex-direction: column; /* 縦方向に配置 */
+        align-items: center; /* 中央揃え */
+        max-width: 250px; /* 必要に応じて画像幅を制限 */
+    }
+
+    #result-page .image-item img {
+        max-width: 100%; /* 幅をコンテナに合わせる */
+        max-height: 300px; /* 最大高さを調整 */
+        height: auto; /* 高さを自動調整 */
+        border-radius: 8px; /* 角を丸める（必要なら） */
+        margin-bottom: 10px; /* 画像と説明文の間の余白 */
+    }
+
+    #result-page .image-item .description {
+        font-size: 1.1em; /* 説明文のサイズ調整 */
+        text-align: center; /* 説明文を中央揃え */
+        color: #333; /* テキストの色 */
+    }
+
+    #result-page {
+        text-align: center; /* テキストを中央揃え */
+        padding: 20px; /* パディングを追加 */
+        background-color: #f9f9f9; /* 背景色を追加 */
+        border-radius: 10px; /* 角を丸める */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* シャドウを追加 */
+    }
+
+    #result {
+        font-size: 1.5em; /* フォントサイズを大きく */
+        font-weight: bold; /* 太字にする */
+        margin-bottom: 20px; /* 下のマージンを追加 */
+        color: #333; /* テキストの色 */
+    }
+
+    .image-display {
+        display: flex; /* 画像を横並びに */
+        justify-content: center; /* 中央揃え */
+        flex-wrap: wrap; /* 折り返し */
+        gap: 15px; /* 画像間のスペース */
+    }
+
+    .image-item {
+        max-width: 200px; /* 画像の最大幅を設定 */
+        text-align: center; /* 説明文を中央揃え */
+    }
+
+    .description {
+        font-size: 1em; /* 説明文のサイズ調整 */
+        color: #666; /* 説明文の色 */
+    }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">project-i</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="uvindex.html">UV指数</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="uvmap.html">UVマップ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="skin.html">肌質診断</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    <div class="container">
+        <h3 class="mt-4">肌質診断</h3>
+        
+        <!-- 質問1 -->
+        <div class="form-page" id="question-1">
+            <h4>朝起きた時の肌の状態は？</h4>
+            <div class="row image-options">
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_1" value="乾燥肌" required><img src="images/kansou.png" alt="乾燥肌"></label>
+                </div>
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_1" value="普通肌" required><img src="images/uruoi.png" alt="普通肌"></label>
+                </div>
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_1" value="混合肌" required><img src="images/bubun.png" alt="混合肌"></label>
+                </div>
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_1" value="脂性肌" required><img src="images/zentai.png" alt="脂性肌"></label>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary mt-3" onclick="nextPage()">次へ</button>
+        </div>
+
+        <!-- 質問2 -->
+        <div class="form-page" id="question-2" style="display: none;">
+            <h4>洗顔後の肌の状態は？</h4>
+            <div class="row image-options">
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_2" value="乾燥肌" required><img src="images/Figma basics (12).png" alt="乾燥肌"></label>
+                </div>
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_2" value="普通肌" required><img src="images/Figma basics (13).png" alt="普通肌"></label>
+                </div>
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_2" value="混合肌" required><img src="images/Figma basics (15).png" alt="混合肌"></label>
+                </div>
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_2" value="脂性肌" required><img src="images/Figma basics (14).png" alt="脂性肌"></label>
+                </div>
+            </div>
+            <button type="button" class="btn btn-secondary mt-3" onclick="prevPage()">前へ</button>
+            <button type="button" class="btn btn-primary mt-3" onclick="nextPage()">次へ</button>
+        </div>
+
+        <!-- 質問3 -->
+        <div class="form-page" id="question-3" style="display: none;">
+            <h4>肌のテカリは気になる？</h4>
+            <div class="row image-options">
+                <div class="col-6 col-md-4">
+                    <label><input type="radio" name="skin_question_3" value="脂性肌" required><img src="images/Figma basics (2).png" alt="脂性肌"></label>
+                </div>
+                <div class="col-6 col-md-4">
+                    <label><input type="radio" name="skin_question_3" value="普通肌,混合肌" required><img src="images/Figma basics (3).png" alt="混合肌"></label>
+                </div>
+                <div class="col-6 col-md-4">
+                    <label><input type="radio" name="skin_question_3" value="普通肌,乾燥肌" required><img src="images/Figma basics (4).png" alt="普通肌"></label>
+                </div>
+            </div>
+            <button type="button" class="btn btn-secondary mt-3" onclick="prevPage()">前へ</button>
+            <button type="button" class="btn btn-primary mt-3" onclick="nextPage()">次へ</button>
+        </div>
+
+                <!-- 質問4 -->
+        <div class="form-page" id="question-4" style="display: none;">
+            <h4>Tゾーンと頬で肌質は違う？</h4>
+            <div class="row image-options">
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_4" value="混合肌" required><img src="images/無題 (2).png" alt="混合肌,脂性肌" class="img-fluid"></label>
+                </div>
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_4" value="普通肌" required><img src="images/無題 (3).png" alt="普通肌,乾燥肌" class="img-fluid"></label>
+                </div>
+            </div>
+            <button type="button" class="btn btn-secondary mt-3" onclick="prevPage()">前へ</button>
+            <button type="button" class="btn btn-primary mt-3" onclick="nextPage()">次へ</button>
+        </div>
+
+        <!-- 質問5 -->
+        <div class="form-page" id="question-5" style="display: none;">
+            <h4>夏と冬どちらの方が毛穴が気になる？</h4>
+            <div class="row image-options">
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_5" value="脂性肌" required><img src="images/Figma basics (6).png" alt="脂性肌" class="img-fluid"></label>
+                </div>
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_5" value="乾燥肌" required><img src="images/Figma basics (5).png" alt="乾燥肌" class="img-fluid"></label>
+                </div>
+            </div>
+            <button type="button" class="btn btn-secondary mt-3" onclick="prevPage()">前へ</button>
+            <button type="button" class="btn btn-primary mt-3" onclick="nextPage()">次へ</button>
+        </div>
+
+        <!-- 質問6 -->
+        <div class="form-page" id="question-6" style="display: none;">
+            <h4>メイクの崩れ方は？</h4>
+            <div class="row image-options">
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_6" value="乾燥肌" required><img src="images/Figma basics (7).png" alt="乾燥肌" class="img-fluid"></label>
+                </div>
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_6" value="普通肌" required><img src="images/Figma basics (8).png" alt="混合肌" class="img-fluid"></label>
+                </div>
+                <div class="col-6 col-md-3">
+                    <label><input type="radio" name="skin_question_6" value="混合肌" required><img src="images/Figma basics (9).png" alt="脂性肌" class="img-fluid"></label>
+                </div>
+            </div>
+            <button type="button" class="btn btn-secondary mt-3" onclick="prevPage()">前へ</button>
+            <button type="button" class="btn btn-primary mt-3" onclick="nextPage()">次へ</button>
+        </div>
+
+        <!-- 診断結果ページ -->
+        <div id="result-page" style="display: none;">
+            <h4>診断結果</h4>
+            <p id="result"></p>
+            <div id="images" class="image-display"></div>
+            <button type="button" class="btn btn-primary mt-3" onclick="goHome()">ホームへ</button>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 1;
+        const totalPages = 6;
+
+        function showPage(page) {
+            for (let i = 1; i <= totalPages; i++) {
+                document.getElementById(`question-${i}`).style.display = 'none';
+            }
+            document.getElementById('result-page').style.display = 'none';
+
+            if (page > totalPages) {
+                displayResult();
+                document.getElementById('result-page').style.display = 'block';
+            } else {
+                document.getElementById(`question-${page}`).style.display = 'block';
+            }
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages + 1) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        }
+
+        function displayResult() {
+    let counts = {};
+    const selectedOptions = document.querySelectorAll('input[type="radio"]:checked');
+    selectedOptions.forEach(option => {
+        const skinType = option.value;
+        counts[skinType] = (counts[skinType] || 0) + 1;
+    });
+
+    let mostCommonSkinType = null;
+    let maxCount = 0;
+    for (let type in counts) {
+        if (counts[type] > maxCount) {
+            maxCount = counts[type];
+            mostCommonSkinType = type;
+        }
+    }
+
+    const resultElement = document.getElementById('result');
+    const imageContainer = document.getElementById('images');
+    imageContainer.innerHTML = ''; // 初期化
+
+    resultElement.textContent = `あなたの肌質は: ${mostCommonSkinType}`;
+
+    const recommendedSunscreen = "おすすめの日焼け止めは:";
+    const recommendationElement = document.createElement('p');
+    recommendationElement.textContent = recommendedSunscreen;
+    imageContainer.appendChild(recommendationElement);
+
+    const skinData = {
+        "乾燥肌": [
+            { src: "skinimg/k1.png", desc: "エクセル/プロテクティブ" },
+            { src: "skinimg/k2.png", desc: "espoir/ウォータースプラッシュサンクリーム" }
+        ],
+        "普通肌": [
+            { src: "skinimg/h1.png", desc: "&be" },
+            { src: "skinimg/h2.png", desc: "ちふれ/BBクリーム" }
+        ],
+        "混合肌": [
+            { src: "skinimg/ko1.png", desc: "ラ ロッシュ ポゼ" },
+            { src: "skinimg/ko2.png", desc: "チャコット・コスメティック" }
+        ],
+        "脂性肌": [
+            { src: "skinimg/s1.png", desc: "アリィー/クロノビューティージェル" },
+            { src: "skinimg/s2.png", desc: "ダルバ/ウォーターフルトーンアップサンクリーム" }
+        ]
+    };
+
+    if (skinData[mostCommonSkinType]) {
+        skinData[mostCommonSkinType].forEach(item => {
+            // 画像と説明文をまとめるコンテナを作成
+            const imageItem = document.createElement('div');
+            imageItem.className = 'image-item';
+
+            const imgElement = document.createElement('img');
+            imgElement.src = item.src;
+            imgElement.alt = mostCommonSkinType;
+            imageItem.appendChild(imgElement);
+
+            const descElement = document.createElement('p');
+            descElement.className = 'description';
+            descElement.textContent = item.desc;
+            imageItem.appendChild(descElement);
+
+            imageContainer.appendChild(imageItem);
+        });
+    }
+}
+
+
+        function goHome() {
+            window.location.href = "index.html";
+        }
+
+        showPage(currentPage);
+    </script>
+</body>
+</html>
+
+
